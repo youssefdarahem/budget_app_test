@@ -27,6 +27,7 @@ void main() {
       sold: 240,
       driver: 30,
       food: 210,
+      commission: 210,
       netProfit: 304,
     )
   ];
