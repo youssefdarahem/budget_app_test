@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-class Order extends Equatable {
+class OrderEntity extends Equatable {
   final String orderNo;
-  final String itemCount;
+  final int itemCount;
   final String dateTime;
   final int sold;
   final int driver;
   final int food;
   final int netProfit;
 
-  const Order({
+  const OrderEntity({
     required this.orderNo,
     required this.itemCount,
     required this.dateTime,
