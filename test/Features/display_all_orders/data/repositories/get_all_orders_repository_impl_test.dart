@@ -3,7 +3,7 @@ import 'package:budget_app_test/Features/display_all_orders/data/models/order_mo
 import 'package:budget_app_test/Features/display_all_orders/data/repositories/get_all_orders_repository_impl.dart';
 import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
 import 'package:budget_app_test/Features/display_all_orders/domain/repositories/get_all_orders_repository.dart';
-import 'package:budget_app_test/core/error/Failure.dart';
+import 'package:budget_app_test/core/error/failures.dart';
 import 'package:budget_app_test/core/error/exceptions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';

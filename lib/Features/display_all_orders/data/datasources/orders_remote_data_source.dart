@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:budget_app_test/core/error/exceptions.dart';
+import '../../../../core/error/exceptions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
-import 'package:budget_app_test/Features/display_all_orders/data/models/order_model.dart';
+import '../models/order_model.dart';
 
 abstract class OrdersRemoteDataSource {
   /// calls the https://f45e6e71-94ac-4e09-bea7-64ac7f13cc11.mock.pstmn.io/GetAllOrders endpoint.

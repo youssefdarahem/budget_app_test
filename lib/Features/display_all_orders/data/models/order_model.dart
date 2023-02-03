@@ -1,4 +1,4 @@
-import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
+import '../../domain/entities/order_entity.dart';
 
 class OrderModel extends OrderEntity {
   const OrderModel({

@@ -1,7 +1,7 @@
 import 'package:budget_app_test/Features/display_all_orders/data/datasources/orders_remote_data_source.dart';
 import 'package:budget_app_test/Features/display_all_orders/data/models/order_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:budget_app_test/core/error/Failure.dart';
+import 'package:budget_app_test/core/error/failures.dart';
 import 'package:budget_app_test/core/error/exceptions.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
