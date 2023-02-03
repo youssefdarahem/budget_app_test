@@ -17,11 +17,11 @@ void main() {
   late MockOrderRemoteDataSource mockOrderRemoteDataSource;
   late GetAllOrdersRepositoryImpl repo;
 
-  const List<OrderModel> tOrderModel = [
+  List<OrderModel> tOrderModel = [
     OrderModel(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: "30 Aug 2021 - 16:15 pm",
+      dateTime: DateTime(2021, 8, 30),
       sold: 240,
       driver: 30,
       food: 210,
@@ -30,7 +30,7 @@ void main() {
     )
   ];
 
-  const List<OrderEntity> tOrder = tOrderModel;
+  List<OrderEntity> tOrder = tOrderModel;
 
   setUp(() {
     mockOrderRemoteDataSource = MockOrderRemoteDataSource();
@@ -49,7 +49,7 @@ void main() {
       final result = await repo.getAllOrders();
 
       // assert
-      expect(result, const Right(tOrderModel));
+      expect(result, Right(tOrderModel));
     },
   );
 

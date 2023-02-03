@@ -16,11 +16,11 @@ void main() {
   late OrdersRemoteDataSourceImpl dataSource;
   late MockHttpClient mockHttpClient;
 
-  const List<OrderModel> tOrders = [
+  List<OrderModel> tOrders = [
     OrderModel(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: "30 Aug 2021 - 16:15 pm",
+      dateTime: DateTime(2021, 8, 30),
       sold: 240,
       driver: 30,
       food: 210,
@@ -30,7 +30,7 @@ void main() {
     OrderModel(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: "29 Aug 2021 - 16:15 pm",
+      dateTime: DateTime(2021, 8, 29),
       sold: 240,
       driver: 30,
       food: 210,

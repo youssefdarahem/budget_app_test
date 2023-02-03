@@ -1,3 +1,4 @@
+import '../../../../core/utils/utils.dart';
 import '../../domain/entities/order_entity.dart';
 
 class OrderModel extends OrderEntity {
@@ -13,10 +14,12 @@ class OrderModel extends OrderEntity {
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
+    print(json['orderDateTime']);
+    print(Utils.strToDateConverter(json['orderDateTime']));
     return OrderModel(
       orderNo: json['orderNo'],
       itemCount: json['orderItemsCount'],
-      dateTime: json['orderDateTime'],
+      dateTime: Utils.strToDateConverter(json['orderDateTime']),
       sold: json['orderSold'],
       driver: json['orderDriver'],
       food: json['orderFood'],

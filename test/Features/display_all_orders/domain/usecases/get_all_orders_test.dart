@@ -19,11 +19,11 @@ void main() {
     usecase = GetAllOrders(repo: mockGetAllOrdersRepository);
   });
 
-  const List<OrderEntity> tOrder = [
+  List<OrderEntity> tOrder = [
     OrderEntity(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: "30 Aug 2021 - 16:15 pm",
+      dateTime: DateTime(2021, 8, 30),
       sold: 240,
       driver: 30,
       food: 210,
@@ -37,12 +37,12 @@ void main() {
     () async {
       //arrange
       when(() => mockGetAllOrdersRepository.getAllOrders())
-          .thenAnswer((_) async => const Right(tOrder));
+          .thenAnswer((_) async => Right(tOrder));
       // act
       final result = await usecase(NoParams());
 
       //assert
-      expect(result, const Right(tOrder));
+      expect(result, Right(tOrder));
       verify(() => mockGetAllOrdersRepository.getAllOrders()).called(1);
       verifyNoMoreInteractions(mockGetAllOrdersRepository);
     },

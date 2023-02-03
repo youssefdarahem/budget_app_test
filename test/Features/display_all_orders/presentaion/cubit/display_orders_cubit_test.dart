@@ -17,11 +17,13 @@ void main() {
   late DisplayOrdersCubit cubit;
   late MockGetAllOrders mockGetAllOrders;
 
-  const List<OrderEntity> tOrder = [
+  List<OrderEntity> tOrder = [
     OrderEntity(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: "30 Aug 2021 - 16:15 pm",
+
+      dateTime: DateTime(2021, 8, 30),
+      // dateTime: "30 Aug 2021 - 16:15 pm",
       sold: 240,
       driver: 30,
       food: 210,
@@ -48,11 +50,11 @@ void main() {
     () async {
       // arrange
       when(() => mockGetAllOrders(any()))
-          .thenAnswer((_) async => const Right(tOrder));
+          .thenAnswer((_) async => Right(tOrder));
       // assert later
       final expected = [
         Loading(),
-        const Loaded(orders: tOrder),
+        Loaded(orders: tOrder),
       ];
       expectLater(cubit.stream, emitsInOrder(expected));
       // act

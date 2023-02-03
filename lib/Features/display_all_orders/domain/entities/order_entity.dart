@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class OrderEntity extends Equatable {
   final String orderNo;
   final int itemCount;
-  final String dateTime;
+  final DateTime dateTime;
   final int sold;
   final int driver;
   final int food;
