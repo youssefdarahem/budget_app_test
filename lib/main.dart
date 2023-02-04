@@ -133,12 +133,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       return Container(
                         height: size.height * 0.75,
                         child: ListView.builder(
-                          itemCount: orders.length,
+                          itemCount: ordersWidget.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 15.0, vertical: 10),
-                              child: OrderItem(order: orders[index]),
+                              child: ordersWidget[index],
                             );
                           },
                         ),
@@ -180,11 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Widget> ordersWidget = orders.map((order) {
       return OrderItem(order: order);
     }).toList();
-    // ordersWidget.add(
-    //   Container(
-    //     height: 50,
-    //   ),
-    // );
+
     return ordersWidget;
   }
 }

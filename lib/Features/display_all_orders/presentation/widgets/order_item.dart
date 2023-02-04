@@ -6,6 +6,7 @@ class OrderItem extends StatelessWidget {
   final OrderEntity order;
   const OrderItem({super.key, required this.order});
 
+  //TODO: add styles
   @override
   Widget build(BuildContext context) {
     return Container(
