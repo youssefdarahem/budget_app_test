@@ -1,5 +1,6 @@
-import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
-import 'package:budget_app_test/Features/filter_orders/domain/entities/filter_type.dart';
+import '../../../../core/utils/filter_orders.dart';
+import '../../../display_all_orders/domain/entities/order_entity.dart';
+import '../../domain/entities/filter_type.dart';
 
 abstract class FilterOrdersDataSource {
   /// calls the filter method from utils with the ordersToBeFiltered and the filter type
@@ -9,9 +10,11 @@ abstract class FilterOrdersDataSource {
 }
 
 class FilterOrdersDataSourceImpl implements FilterOrdersDataSource {
+  final OrdersFilter ordersFilter;
+
+  FilterOrdersDataSourceImpl({required this.ordersFilter});
   @override
   List<OrderEntity> filterOrders(List<OrderEntity> orders, FilterType type) {
-    // TODO: implement filterOrders
-    throw UnimplementedError();
+    return ordersFilter.filter(orders, type);
   }
 }

@@ -1,7 +1,7 @@
 import '../../Features/display_all_orders/domain/entities/order_entity.dart';
 import '../../Features/filter_orders/domain/entities/filter_type.dart';
 
-class FilterOrder {
+class OrdersFilter {
   List<OrderEntity> filter(
     List<OrderEntity> toBeFiltered,
     FilterType filterType,
@@ -25,7 +25,7 @@ class FilterOrder {
           var weekDay = now.weekday;
           var firstDayOfWeek = now.subtract(Duration(days: weekDay));
           for (var order in toBeFiltered) {
-            if (order.dateTimeConverted.day > firstDayOfWeek.day) {
+            if (order.dateTimeConverted.isAfter(firstDayOfWeek)) {
               filtered.add(order);
             }
           }

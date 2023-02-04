@@ -50,8 +50,7 @@ void main() {
   var uri = Uri.parse(
       'https://f45e6e71-94ac-4e09-bea7-64ac7f13cc11.mock.pstmn.io/GetAllOrders');
   test(
-    '''should perform a GET request on a URL with number
-       being the endpoint and with application/json header''',
+    'should perform a GET request on a URL with the endpoint GetALLOrders',
     () async {
       // arrange
       when(() => mockHttpClient.get(any()))
@@ -65,7 +64,7 @@ void main() {
     },
   );
   test(
-    'should return NumberTrivia when the response code is 200 (success)',
+    'should return OrderList when the response code is 200 (success)',
     () async {
       // arrange
       when(() => mockHttpClient.get(any())).thenAnswer(
