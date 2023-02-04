@@ -20,7 +20,8 @@ void main() {
     OrderModel(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: DateTime(2021, 8, 30),
+      dateTimeConverted: DateTime(2021, 8, 30),
+      dateTime: "30 Aug 2021 - 16:15 pm",
       sold: 240,
       driver: 30,
       food: 210,
@@ -30,7 +31,8 @@ void main() {
     OrderModel(
       orderNo: '#54353453453',
       itemCount: 4,
-      dateTime: DateTime(2021, 8, 29),
+      dateTimeConverted: DateTime(2021, 8, 29),
+      dateTime: "29 Aug 2021 - 16:15 pm",
       sold: 240,
       driver: 30,
       food: 210,

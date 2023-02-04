@@ -11,6 +11,7 @@ class OrderModel extends OrderEntity {
     required super.food,
     required super.netProfit,
     required super.commission,
+    required super.dateTimeConverted,
   });
 
   factory OrderModel.fromJson(Map<String, dynamic> json) {
@@ -19,12 +20,13 @@ class OrderModel extends OrderEntity {
     return OrderModel(
       orderNo: json['orderNo'],
       itemCount: json['orderItemsCount'],
-      dateTime: Utils.strToDateConverter(json['orderDateTime']),
+      dateTime: json['orderDateTime'],
       sold: json['orderSold'],
       driver: json['orderDriver'],
       food: json['orderFood'],
       commission: json['orderCommission'],
       netProfit: json['orderNetProfit'],
+      dateTimeConverted: Utils.strToDateConverter(json['orderDateTime']),
     );
   }
 
