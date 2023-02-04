@@ -1,5 +1,5 @@
-import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
-import 'package:budget_app_test/Features/filter_orders/presentaion/pages/filtered_page.dart';
+import '../../../display_all_orders/domain/entities/order_entity.dart';
+import '../pages/filtered_page.dart';
 import 'package:flutter/material.dart';
 
 class FilterBox extends StatelessWidget {

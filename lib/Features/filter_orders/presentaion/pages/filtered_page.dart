@@ -1,4 +1,4 @@
-import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
+import '../../../display_all_orders/domain/entities/order_entity.dart';
 import 'package:flutter/material.dart';
 
 import '../../../display_all_orders/presentation/widgets/order_item.dart';

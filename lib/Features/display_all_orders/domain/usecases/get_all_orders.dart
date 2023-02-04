@@ -1,8 +1,9 @@
-import '../entities/order_entity.dart';
-import '../repositories/get_all_orders_repository.dart';
+import 'package:dartz/dartz.dart';
+
 import '../../../../core/error/failures.dart';
 import '../../../../core/usecases/usecase.dart';
-import 'package:dartz/dartz.dart';
+import '../entities/order_entity.dart';
+import '../repositories/get_all_orders_repository.dart';
 
 class GetAllOrders implements UseCase<List<OrderEntity>, NoParams> {
   final GetAllOrdersRepository repo;
