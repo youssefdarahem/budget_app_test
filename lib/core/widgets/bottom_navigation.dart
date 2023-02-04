@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   const CustomBottomNavigation({
@@ -10,7 +11,6 @@ class CustomBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //TODO: fix the list, add Icons
     return Positioned.fill(
       top: size.height * 0.66,
       child: Container(
@@ -18,7 +18,7 @@ class CustomBottomNavigation extends StatelessWidget {
         decoration: const BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Color.fromARGB(255, 250, 250, 250),
+              color: Color.fromARGB(100, 250, 250, 250),
               blurRadius: 8,
               spreadRadius: 1,
               offset: Offset(0, 0),
@@ -29,46 +29,30 @@ class CustomBottomNavigation extends StatelessWidget {
             topRight: Radius.elliptical(60.0, 60.0),
           ),
           // borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(200, 255, 255, 255),
+          color: Color.fromARGB(150, 255, 255, 255),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
               onPressed: () {},
-              icon: const Icon(
-                Icons.person,
-                color: Colors.grey,
-              ),
+              icon: SvgPicture.asset('assets/images/Icon awesome-user-alt.svg'),
             ),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.car_repair,
-                color: Colors.grey,
-              ),
-            ),
+                onPressed: () {},
+                icon:
+                    SvgPicture.asset('assets/images/Icon awesome-car-alt.svg')),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.grey,
-              ),
-            ),
+                onPressed: () {},
+                icon: SvgPicture.asset('assets/images/Icon awesome-store.svg')),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.wallet,
-                color: Colors.green,
-              ),
-            ),
+                onPressed: () {},
+                icon:
+                    SvgPicture.asset('assets/images/Icon ionic-md-wallet.svg')),
             IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.food_bank,
-                color: Colors.grey,
-              ),
-            ),
+                onPressed: () {},
+                icon: SvgPicture.asset(
+                    'assets/images/Icon material-restaurant-menu.svg')),
           ],
         ),
       ),

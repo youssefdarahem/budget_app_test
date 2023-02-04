@@ -21,61 +21,76 @@ class FilteredPage extends StatelessWidget {
     TextStyle? mainStyle =
         Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.white);
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 10),
-            color: const Color.fromARGB(255, 255, 190, 25),
-            child: Column(
+      body: Container(
+        padding: const EdgeInsets.only(top: 10),
+        color: const Color.fromARGB(255, 255, 190, 25),
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: -150,
+              right: -100,
+              child: SvgPicture.asset('assets/images/Path 1.svg'),
+            ),
+            Column(
               children: [
                 const SizedBox(
                   height: 30,
                 ),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10.0),
+                      ),
                     ),
-                  ),
-                  child: ButtonBar(
-                    alignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      //TODO: center title
-                      IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      Center(
-                        child: Text(
-                          title,
-                          style:
-                              mainStyle.copyWith(fontWeight: FontWeight.bold),
+                        const Spacer(
+                          flex: 2,
                         ),
-                      ),
-                    ],
+                        Center(
+                          child: Text(
+                            title,
+                            style:
+                                mainStyle.copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 3,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      '${revenue.toString()} Tl',
-                      style: mainStyle.copyWith(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    const Spacer(),
-                    Text(
-                      '${orderNum.toString()} Order',
-                      style: mainStyle,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        '${revenue.toString()} Tl',
+                        style: mainStyle.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '${orderNum.toString()} Order',
+                        style: mainStyle,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 5),
                 const Divider(
@@ -88,7 +103,7 @@ class FilteredPage extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 10),
+                            horizontal: 20.0, vertical: 10),
                         child: OrderItem(order: filteredOrders[index]),
                       );
                     },
@@ -96,13 +111,8 @@ class FilteredPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Positioned(
-            bottom: -150,
-            right: -100,
-            child: SvgPicture.asset('assets/images/Path 1.svg'),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
