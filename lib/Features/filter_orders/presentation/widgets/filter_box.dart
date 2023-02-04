@@ -1,6 +1,8 @@
 import '../../../display_all_orders/domain/entities/order_entity.dart';
-import '../pages/filtered_page.dart';
+
 import 'package:flutter/material.dart';
+
+import '../pages/filtered_page.dart';
 
 class FilterBox extends StatelessWidget {
   final double revenue;
@@ -34,7 +36,7 @@ class FilterBox extends StatelessWidget {
         width: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 254, 209, 49),
+          color: const Color.fromARGB(255, 254, 209, 49),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -50,7 +52,7 @@ class FilterBox extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   revenue.toString(),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
               Text(

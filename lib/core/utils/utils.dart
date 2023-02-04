@@ -1,3 +1,5 @@
+import '../../Features/display_all_orders/domain/entities/order_entity.dart';
+
 class Utils {
   static DateTime strToDateConverter(String str) {
     const Map<int, String> monthsInYear = {
@@ -23,5 +25,14 @@ class Utils {
     int day = int.parse(str.substring(0, 2));
 
     return DateTime(year, month, day);
+  }
+
+  /// return [Revenue, OrderNum].
+  List<int> extractRevenueAndOrder(List<OrderEntity> orders) {
+    int revenue = 0;
+    for (var order in orders) {
+      revenue += order.netProfit;
+    }
+    return [revenue, orders.length];
   }
 }

@@ -6,7 +6,7 @@ abstract class FilterOrdersDataSource {
   /// calls the filter method from utils with the ordersToBeFiltered and the filter type
   ///
   /// throws a FilterException to any code error
-  List<OrderEntity> filterOrders(List<OrderEntity> orders, FilterType type);
+  Map<FilterType, List<OrderEntity>> filterOrders(List<OrderEntity> orders);
 }
 
 class FilterOrdersDataSourceImpl implements FilterOrdersDataSource {
@@ -14,7 +14,7 @@ class FilterOrdersDataSourceImpl implements FilterOrdersDataSource {
 
   FilterOrdersDataSourceImpl({required this.ordersFilter});
   @override
-  List<OrderEntity> filterOrders(List<OrderEntity> orders, FilterType type) {
-    return ordersFilter.filter(orders, type);
+  Map<FilterType, List<OrderEntity>> filterOrders(List<OrderEntity> orders) {
+    return ordersFilter.filter(orders);
   }
 }

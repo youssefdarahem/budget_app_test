@@ -42,19 +42,21 @@ void main() {
     )
   ];
 
-  List<OrderModel> tFiltered = [
-    OrderModel(
-      orderNo: '#54353453453',
-      itemCount: 4,
-      dateTimeConverted: DateTime(2021, 8, 30),
-      dateTime: "30 Aug 2021 - 16:15 pm",
-      sold: 240,
-      driver: 30,
-      food: 210,
-      commission: 293,
-      netProfit: 304,
-    ),
-  ];
+  Map<FilterType, List<OrderModel>> tOrderFiltered = {
+    FilterType.today: [
+      OrderModel(
+        orderNo: '#54353453453',
+        itemCount: 4,
+        dateTimeConverted: DateTime(2021, 8, 30),
+        dateTime: "30 Aug 2021 - 16:15 pm",
+        sold: 240,
+        driver: 30,
+        food: 210,
+        commission: 210,
+        netProfit: 304,
+      )
+    ]
+  };
 
   setUp(() {
     registerFallbackValue(FilterType.today);
@@ -66,23 +68,23 @@ void main() {
     'Should call FilterOrders',
     () async {
       // arrange
-      when(() => mockOrdersFilter.filter(any(), any())).thenReturn(tFiltered);
+      when(() => mockOrdersFilter.filter(any())).thenReturn(tOrderFiltered);
       // act
-      dataSource.filterOrders(tOrders, FilterType.today);
+      dataSource.filterOrders(tOrders);
       // assert
-      verify(() => mockOrdersFilter.filter(tOrders, FilterType.today));
+      verify(() => mockOrdersFilter.filter(tOrders));
     },
   );
   test(
     'should return List<Order> when the call is successful',
     () async {
       // arrange
-      when(() => mockOrdersFilter.filter(any(), any())).thenReturn(tFiltered);
+      when(() => mockOrdersFilter.filter(any())).thenReturn(tOrderFiltered);
       // act
-      final result = dataSource.filterOrders(tOrders, FilterType.today);
+      final result = dataSource.filterOrders(tOrders);
 
       // assert
-      expect(result, equals(tFiltered));
+      expect(result, equals(tOrderFiltered));
     },
   );
 

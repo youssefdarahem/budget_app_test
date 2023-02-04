@@ -40,21 +40,35 @@ void main() {
     )
   ];
 
+  Map<FilterType, List<OrderEntity>> tOrderFiltered = {
+    FilterType.today: [
+      OrderEntity(
+        orderNo: '#54353453453',
+        itemCount: 4,
+        dateTimeConverted: DateTime(2021, 8, 30),
+        dateTime: "30 Aug 2021 - 16:15 pm",
+        sold: 240,
+        driver: 30,
+        food: 210,
+        commission: 210,
+        netProfit: 304,
+      )
+    ]
+  };
+
   test(
     'should get orders from the repository',
     () async {
       //arrange
-      when(() => mockFilterOrdersRepository.filterOrders(any(), any()))
-          .thenReturn(Right(tOrder));
+      when(() => mockFilterOrdersRepository.filterOrders(any()))
+          .thenReturn(Right(tOrderFiltered));
       // act
       var tFilterType = FilterType.week;
-      final result =
-          await usecase(Params(filterType: tFilterType, toBeFiltered: tOrder));
+      final result = await usecase(Params(toBeFiltered: tOrder));
 
       //assert
-      expect(result, Right(tOrder));
-      verify(() => mockFilterOrdersRepository.filterOrders(tOrder, tFilterType))
-          .called(1);
+      expect(result, Right(tOrderFiltered));
+      verify(() => mockFilterOrdersRepository.filterOrders(tOrder)).called(1);
       verifyNoMoreInteractions(mockFilterOrdersRepository);
     },
   );

@@ -1,4 +1,5 @@
 import 'package:budget_app_test/Features/display_all_orders/data/models/order_model.dart';
+import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
 import 'package:budget_app_test/Features/filter_orders/domain/entities/filter_type.dart';
 import 'package:budget_app_test/core/utils/filter_orders.dart';
 
@@ -162,6 +163,12 @@ void main() {
     )
   ];
 
+  // Map<FilterType, List<OrderEntity>> tOrderFiltered = {
+  //   FilterType.today: tFilteredToday,
+  //   FilterType.month: tFilteredMonth,
+  //   FilterType.week: tFilteredWeek,
+  // };
+
   setUp(() {
     ordersFilter = OrdersFilter();
   });
@@ -170,9 +177,11 @@ void main() {
     'should filter by day',
     () {
       // act
-      final result = ordersFilter.filter(tOrders, FilterType.today);
+      final Map<FilterType, List<OrderEntity>> result =
+          ordersFilter.filter(tOrders);
+      final listOrders = result[FilterType.today];
       // assert
-      expect(result, equals(tFilteredToday));
+      expect(listOrders, equals(tFilteredToday));
     },
   );
 
@@ -180,9 +189,10 @@ void main() {
     'should filter by week',
     () {
       // act
-      final result = ordersFilter.filter(tOrders, FilterType.week);
+      final result = ordersFilter.filter(tOrders);
+      final listOrders = result[FilterType.week];
       // assert
-      expect(result, equals(tFilteredWeek));
+      expect(listOrders, equals(tFilteredWeek));
     },
   );
 
@@ -190,9 +200,10 @@ void main() {
     'should filter by month',
     () {
       // act
-      final result = ordersFilter.filter(tOrders, FilterType.month);
+      final result = ordersFilter.filter(tOrders);
+      final listOrders = result[FilterType.month];
       // assert
-      expect(result, equals(tFilteredMonth));
+      expect(listOrders, equals(tFilteredMonth));
     },
   );
 }

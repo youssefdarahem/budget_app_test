@@ -31,6 +31,22 @@ void main() {
     )
   ];
 
+  Map<FilterType, List<OrderEntity>> tOrderFiltered = {
+    FilterType.today: [
+      OrderEntity(
+        orderNo: '#54353453453',
+        itemCount: 4,
+        dateTimeConverted: DateTime(2021, 8, 30),
+        dateTime: "30 Aug 2021 - 16:15 pm",
+        sold: 240,
+        driver: 30,
+        food: 210,
+        commission: 210,
+        netProfit: 304,
+      )
+    ]
+  };
+
   List<OrderEntity> tOrder = tOrderModel;
 
   setUp(() {
@@ -44,14 +60,14 @@ void main() {
     'should return a list of orders when the call to the data source is successful',
     () async {
       // arrange
-      when(() => mockFilterOrdersDataSource.filterOrders(any(), any()))
-          .thenReturn(tOrderModel);
+      when(() => mockFilterOrdersDataSource.filterOrders(any()))
+          .thenReturn(tOrderFiltered);
 
       // act
-      final result = repo.filterOrders(tOrder, FilterType.today);
+      final result = repo.filterOrders(tOrder);
 
       // assert
-      expect(result, Right(tOrderModel));
+      expect(result, Right(tOrderFiltered));
     },
   );
 
@@ -59,11 +75,11 @@ void main() {
     'should return a ServerFailure when the call to the data source is unsuccessful',
     () async {
       // arrange
-      when(() => mockFilterOrdersDataSource.filterOrders(any(), any()))
+      when(() => mockFilterOrdersDataSource.filterOrders(any()))
           .thenThrow(FilterException());
 
       // act
-      final result = await repo.filterOrders(tOrder, FilterType.today);
+      final result = await repo.filterOrders(tOrder);
 
       // assert
       expect(result, Left(FilterFailure()));

@@ -6,7 +6,6 @@ class OrderItem extends StatelessWidget {
   final OrderEntity order;
   const OrderItem({super.key, required this.order});
 
-  //TODO: add styles
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,9 +23,18 @@ class OrderItem extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
               child: Row(
                 children: [
-                  Text(order.orderNo),
-                  Spacer(),
-                  Text('${order.itemCount.toString()} items'),
+                  Text(
+                    order.orderNo,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const Spacer(),
+                  Text(
+                    '${order.itemCount.toString()} items',
+                    style: const TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -40,14 +48,14 @@ class OrderItem extends StatelessWidget {
                   RichText(
                     text: TextSpan(
                       text: 'Sold ',
-                      style: const TextStyle(color: Colors.black),
+                      style: Theme.of(context).textTheme.bodyMedium,
                       children: [
                         TextSpan(
                           text: order.sold.toString(),
-                          style: const TextStyle(
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(color: Colors.red),
                         ),
                       ],
                     ),
@@ -55,7 +63,9 @@ class OrderItem extends StatelessWidget {
                 ],
               ),
             ),
-            const Divider(),
+            const Divider(
+              thickness: 1,
+            ),
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
@@ -69,7 +79,10 @@ class OrderItem extends StatelessWidget {
                         const SizedBox(height: 5),
                         Text(
                           order.driver.toString(),
-                          style: TextStyle(color: Colors.green),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 48, 48, 48),
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                       ],
                     ),
@@ -82,7 +95,13 @@ class OrderItem extends StatelessWidget {
                       children: [
                         Text('Food'),
                         const SizedBox(height: 5),
-                        Text(order.food.toString()),
+                        Text(
+                          order.food.toString(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 233, 0, 0),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                     const VerticalDivider(
@@ -94,7 +113,13 @@ class OrderItem extends StatelessWidget {
                       children: [
                         Text('Commission'),
                         const SizedBox(height: 5),
-                        Text(order.commission.toString()),
+                        Text(
+                          order.commission.toString(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 255, 190, 25),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                     const VerticalDivider(
@@ -106,7 +131,13 @@ class OrderItem extends StatelessWidget {
                       children: [
                         Text('Net Profit'),
                         const SizedBox(height: 5),
-                        Text(order.netProfit.toString()),
+                        Text(
+                          order.netProfit.toString(),
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 31, 110, 26),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ],
                     ),
                   ],
