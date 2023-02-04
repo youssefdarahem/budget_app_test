@@ -1,6 +1,6 @@
 import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
 import 'package:budget_app_test/Features/display_all_orders/domain/usecases/get_all_orders.dart';
-import 'package:budget_app_test/Features/display_all_orders/presentaion/cubit/display_orders_cubit.dart';
+import 'package:budget_app_test/Features/display_all_orders/presentation/cubit/display_orders_cubit.dart';
 
 import 'package:budget_app_test/core/error/failures.dart';
 
