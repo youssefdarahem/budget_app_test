@@ -1,10 +1,11 @@
-import 'package:budget_app_test/Features/display_all_orders/domain/entities/order_entity.dart';
-import 'package:budget_app_test/Features/display_all_orders/presentation/widgets/order_item.dart';
+import 'package:budget_app_test/Features/filter_orders/presentaion/widgets/filter_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Features/display_all_orders/domain/entities/order_entity.dart';
 import 'Features/display_all_orders/domain/usecases/get_all_orders.dart';
 import 'Features/display_all_orders/presentation/cubit/display_orders_cubit.dart';
+import 'Features/display_all_orders/presentation/widgets/order_item.dart';
 import 'injection_container.dart' as di;
 
 void main() async {
@@ -26,12 +27,13 @@ class MyApp extends StatelessWidget {
       home: BlocProvider(
         create: (context) =>
             DisplayOrdersCubit(getAllOrders: di.sl<GetAllOrders>()),
-        child: MyHomePage(),
+        child: const MyHomePage(),
       ),
     );
   }
 }
 
+//TODO: refactor and move to seperate wadget
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -58,8 +60,61 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: size.height * 0.3,
-              color: Colors.amber,
+              height: size.height * 0.25,
+              color: const Color.fromARGB(255, 255, 190, 25),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Business Name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
+                        child:
+                            BlocBuilder<DisplayOrdersCubit, DisplayOrdersState>(
+                          builder: (context, state) {
+                            if (state is Loading || state is Initial) {
+                              return const CircularProgressIndicator();
+                            } else if (state is Loaded) {
+                              return ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  FilterBox(
+                                    title: 'Today\'s Revenue',
+                                    revenue: 732.00,
+                                    orderNum: 5,
+                                    filteredOrders: state.orders,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  FilterBox(
+                                    title: 'Week so Far',
+                                    revenue: 1531.00,
+                                    orderNum: 10,
+                                    filteredOrders: state.orders,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  FilterBox(
+                                    title: 'Monthly Revenue',
+                                    revenue: 3200.00,
+                                    orderNum: 18,
+                                    filteredOrders: state.orders,
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return const Text('Error');
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Stack(
               children: [
@@ -67,21 +122,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   builder: (context, state) {
                     if (state is Loading || state is Initial) {
                       return SizedBox(
-                        height: size.height * 0.7,
+                        height: size.height * 0.75,
                         child: const Center(
                           child: CircularProgressIndicator(),
                         ),
                       );
                     } else if (state is Loaded) {
                       List<OrderEntity> orders = state.orders;
+                      List<Widget> ordersWidget = mapOrdersToWidget(orders);
                       return Container(
-                        height: size.height * 0.7,
-                        color: Colors.green,
+                        height: size.height * 0.75,
                         child: ListView.builder(
                           itemCount: orders.length,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15.0, vertical: 10),
                               child: OrderItem(order: orders[index]),
                             );
                           },
@@ -89,7 +145,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     } else {
                       return SizedBox(
-                        height: size.height * 0.7,
+                        height: size.height * 0.75,
                         child: const Center(
                           child: Text('Hello'),
                         ),
@@ -97,8 +153,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     }
                   },
                 ),
+                //TODO: add the icons to the bottom navigation bar
                 Positioned.fill(
-                  top: size.height * 0.62,
+                  top: size.height * 0.65,
                   child: Container(
                     height: 50,
                     decoration: const BoxDecoration(
@@ -117,5 +174,17 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  List<Widget> mapOrdersToWidget(List<OrderEntity> orders) {
+    List<Widget> ordersWidget = orders.map((order) {
+      return OrderItem(order: order);
+    }).toList();
+    // ordersWidget.add(
+    //   Container(
+    //     height: 50,
+    //   ),
+    // );
+    return ordersWidget;
   }
 }
